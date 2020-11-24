@@ -1,0 +1,55 @@
+﻿@model PictureViewer.ViewModels.UploadViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="login-root">
+
+    <div class="login-title">Welcome to the Picture Viewer!</div>
+
+    @using (Html.BeginForm("Create", "Upload", FormMethod.Post, new { @class = "login-form", enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Title)
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control login-input" })
+            @if (Model != null && Model.Failed)
+            {
+                @Html.ValidationMessageFor(m => m.Title, "Title required", new { style = "color: red;" })
+            }
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description)
+            @Html.TextBoxFor(m => m.Description, new { @class = "form-control login-input" })
+        </div>
+        <div class="form-file">
+            <input class="file-input" asp-for="Picture" id="customFile" type="file">
+            @if (Model != null && Model.Failed)
+            {
+                @Html.ValidationMessageFor(m => m.Picture, "File required", new { style = "color: red;" })
+            }
+        </div>
+
+        @Html.AntiForgeryToken()
+        <button class="btn btn-primary" type="submit">Upload</button>
+    }
+
+    <button class="btn btn-primary button-style" type="button">
+        @Html.ActionLink("Back", "Index", "Pictures")
+    </button>
+
+
+    @if (Model != null && Model.Failed)
+    {
+        <div class="alert alert-danger" style="margin: 8px;">Something went wrong</div>
+    }
+
+</div>
+
+            <script type="text/javascript">
+
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+            </script>
+        

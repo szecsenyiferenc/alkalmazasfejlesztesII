@@ -1,0 +1,44 @@
+﻿@model PictureViewer.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="login-root">
+
+    <div class="login-title">Please register a new user!</div>
+
+    @using (Html.BeginForm("Create", "Register", FormMethod.Post, new { @class = "login-form" }))
+    {
+<div class="form-group">
+        @Html.LabelFor(m => m.Customer.Username)
+        @Html.TextBoxFor(m => m.Customer.Username, new { @class = "form-control login-input" })
+        @if (Model != null && Model.Failed)
+        {
+            @Html.ValidationMessageFor(m => m.Customer.Username, "Username required", new { style = "color: red;"})
+        }
+        </div>
+<div class="form-group">
+        @Html.LabelFor(m => m.Customer.Password)
+        @Html.PasswordFor(m => m.Customer.Password, new { @class = "form-control login-input" })
+        @if (Model != null && Model.Failed)
+        {
+            @Html.ValidationMessageFor(m => m.Customer.Password, "Password required", new { style = "color: red;" })
+        }
+        </div>
+        <div>
+            @Html.AntiForgeryToken()
+            <button class="btn btn-primary" type="submit">Register</button>
+        </div>
+
+    }
+
+    <button class="btn btn-primary button-style" type="button">
+        @Html.ActionLink("Back", "Index", "Login")
+    </button>
+
+    @if (Model != null && Model.Failed)
+    {
+        <div class="alert alert-danger" style="margin: 8px;">Something went wrong</div>
+    }
+
+</div>

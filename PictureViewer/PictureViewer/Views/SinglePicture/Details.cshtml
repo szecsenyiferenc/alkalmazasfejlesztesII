@@ -1,0 +1,28 @@
+﻿@model PictureViewer.ViewModels.SinglePictureViewModel
+<div>
+    @Html.Partial("_NavBar", Model.Customer)
+    <div class="single-picture-contaier">
+        <img class="single-picture" src="data:image;base64,@System.Convert.ToBase64String(Model.Picture.Image)" />
+        <div class="single-picture-details">
+            <button class="btn btn-primary button-style single-picture-button single-picture-back" type="button">
+                @Html.ActionLink("Back", "Index", "Pictures")
+            </button>
+            @if (Model.Picture.Uploader.Id == Model.Customer.Id)
+            {
+                <button class="btn btn-primary button-style single-picture-button single-picture-delete" type="button">
+                    @Html.ActionLink("Delete", "Delete", "SinglePicture", new { id = Model.Picture.Id })
+                </button>
+            }
+            <div class="single-picture-info">
+                <div class="single-picture-main-text">Title</div>
+                <div class="single-picture-description-text">@Model.Picture.Title</div>
+                <div class="single-picture-main-text">Description</div>
+                <div class="single-picture-description-text">@Model.Picture.Description</div>
+            </div>
+            <div class="single-picture-uploader-info">
+                <div class="single-picture-main-text">Uploader</div>
+                <div class="single-picture-description-text">@Model.Picture.Uploader.Username</div>
+            </div>
+        </div>
+    </div>
+</div>

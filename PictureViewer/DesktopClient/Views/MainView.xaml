@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="DesktopClient.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DesktopClient.Views"
+             xmlns:converter="clr-namespace:DesktopClient.Converter"
+             mc:Ignorable="d" d:DesignWidth="800" Height="700">
+    <UserControl.Resources>
+        <converter:BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </UserControl.Resources>
+    <StackPanel Background="#fafafa">
+        <StackPanel HorizontalAlignment="Stretch">
+            <local:NavBarView x:Name="navBarView"  Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.IsNavBarVisible, Converter={StaticResource BoolToVis}}"></local:NavBarView>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <local:LoginView Margin="0,100,0,0" x:Name="loginView" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.IsLoginVisible, Converter={StaticResource BoolToVis}}"></local:LoginView>
+            <local:RegisterView Margin="0,100,0,0" x:Name="registerView" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.IsRegisterVisible, Converter={StaticResource BoolToVis}}"></local:RegisterView>
+            <local:PicturesView x:Name="picturesView" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.IsPicturesVisible, Converter={StaticResource BoolToVis}}"></local:PicturesView>
+            <local:SinglePictureView x:Name="singlePictureView" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.IsSinglePictureVisible, Converter={StaticResource BoolToVis}}"></local:SinglePictureView>
+            <local:UploadView  Margin="0,100,0,0" x:Name="uploadView" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.IsUploadVisible, Converter={StaticResource BoolToVis}}"></local:UploadView>
+            <local:UpdateView  Margin="0,100,0,0" x:Name="updateView" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.IsUpdateVisible, Converter={StaticResource BoolToVis}}"></local:UpdateView>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

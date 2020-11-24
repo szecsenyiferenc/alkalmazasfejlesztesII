@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="DesktopClient.Views.NavBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DesktopClient.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border BorderThickness="0,0,0,2" BorderBrush="#dee2e6" Background="#fff">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Label VerticalAlignment="Center" FontSize="22" Margin="10,0">PictureViewer</Label>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Orientation="Horizontal" FlowDirection="RightToLeft" VerticalAlignment="Center">
+            <Button Content="Sign out" FontSize="14" Padding="8" Command="{Binding Path=SignOutClick}"></Button>
+            <Button Margin="0,8,8,8" Content="Upload Picture" FontSize="14" Padding="8" Command="{Binding Path=UploadClick}"></Button>
+            <Button Margin="0,8,8,8" Content="Delete User" FontSize="14" Padding="8" Command="{Binding Path=DeleteClick}"></Button>
+            <Label VerticalAlignment="Center" FontSize="14" Padding="0" Content="!"></Label>
+            <Label VerticalAlignment="Center" FontSize="14" Padding="0" Content="{Binding Path=Username}"></Label>
+            <Label VerticalAlignment="Center" FontSize="14" Padding="0" Content=" Welcome"></Label>
+        </StackPanel>
+    </Grid>
+    </Border>
+
+</UserControl>

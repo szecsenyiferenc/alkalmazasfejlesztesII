@@ -1,0 +1,14 @@
+﻿@model Core.Models.Customer 
+<div class="navbar-root">
+    <div class="navbar-title">
+        PictureViewer
+    </div>
+    <div class="navbar-buttons">
+        <div class="navbar-welcome">
+            Welcome @Model.Username!
+        </div>
+        <button class="btn btn-primary button-style">@Html.ActionLink("Delete User", "Delete", "Login")</button>
+        <button class="btn btn-primary button-style">@Html.ActionLink("Upload Picture", "Index", "Upload")</button>
+        <button class="btn btn-primary button-style">@Html.ActionLink("Sign out", "SignOut", "Login")</button>
+    </div>
+</div>

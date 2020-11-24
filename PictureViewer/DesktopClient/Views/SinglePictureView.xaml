@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="DesktopClient.Views.SinglePictureView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DesktopClient.Views" xmlns:converter="clr-namespace:DesktopClient.Converter"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel Margin="20" HorizontalAlignment="Stretch">
+        <Border CornerRadius="8" Height="400" Width="400" Margin="10" >
+            <Border.Background>
+                <ImageBrush Stretch="Fill" ImageSource="{Binding Picture.Image, Converter={StaticResource ImageConverter}}"></ImageBrush>
+            </Border.Background>
+        </Border>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Width="100" Command="{Binding Path=BackClick}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left">Back</Button>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2" Margin="4,0,0,0">
+                <Label HorizontalAlignment="Left">Title</Label>
+                <TextBlock Margin="4,0,0,0" HorizontalAlignment="Left" Text="{Binding Picture.Title}"></TextBlock>
+                <Label HorizontalAlignment="Left">Description</Label>
+                <TextBlock Margin="4,0,0,0" HorizontalAlignment="Left" Text="{Binding Picture.Description}"></TextBlock>
+            </StackPanel>
+            <Button Width="100" Command="{Binding Path=UpdateClick}" Visibility="{Binding Path=IsUpdateVisible, Converter={StaticResource BoolToVis}}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right">Update</Button>
+            <Button Width="100" Command="{Binding Path=DeleteClick}" Visibility="{Binding Path=IsDeleteVisible, Converter={StaticResource BoolToVis}}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">Delete</Button>
+            <StackPanel Orientation="Vertical"  HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2" Margin="0,0,8,0">
+                <Label HorizontalAlignment="Left">Uploader</Label>
+                <TextBlock Margin="4,0,0,0" HorizontalAlignment="Left" Text="{Binding Picture.Uploader}"></TextBlock>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</UserControl>
